@@ -28,11 +28,11 @@ function SiteHeader() {
           className="inline-flex min-h-11 items-center gap-2.5 text-sm font-medium tracking-tight"
         >
           <img
-            src="/icon.png"
+            src="/icon.png?v=helm2"
             alt=""
-            width={28}
-            height={28}
-            className="size-7 shrink-0 object-contain"
+            width={32}
+            height={32}
+            className="size-8 shrink-0 object-contain"
             decoding="async"
           />
           {SITE.name}

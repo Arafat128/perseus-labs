@@ -17,11 +17,11 @@ export const Route = createRootRoute({
       { name: "color-scheme", content: "dark" },
     ],
     links: [
-      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg?v=helm" },
-      { rel: "icon", href: "/favicon.ico?v=helm", sizes: "any" },
-      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png?v=helm" },
-      { rel: "icon", type: "image/png", sizes: "48x48", href: "/favicon-48.png?v=helm" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=helm" },
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg?v=helm2" },
+      { rel: "icon", href: "/favicon.ico?v=helm2", sizes: "any" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png?v=helm2" },
+      { rel: "icon", type: "image/png", sizes: "48x48", href: "/favicon-48.png?v=helm2" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=helm2" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
