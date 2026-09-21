@@ -19,20 +19,42 @@ export const NAV = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-export const LATEST_CALL = {
-  ticker: "$AKE",
-  chain: "BSC",
-  ca: "0x2c3a8Ee94dDD97244a93Bc48298f97d2C412F7Db",
-  kind: "recent-distribution",
-  facts: [
-    "93.4% operator-controlled chips",
-    "98 large transfers in 72h",
-    "Volume not treated as clean demand",
-  ],
-  finding:
-    "93.4% operator-controlled chips; 98 large transfers in 72h; volume not treated as clean demand.",
-  url: "https://x.com/labs_perseus/status/2101753090755981423",
-} as const;
+export const CALLS = [
+  {
+    ticker: "$BR",
+    name: "Bedrock",
+    chain: "BSC",
+    ca: "0xff7d6a96ae471bbcd7713af9cb1feeb16cf56b41",
+    kind: "thin-depth",
+    flag: "Structure" as const,
+    facts: [
+      "HertzFlow risk 0/10; 0 large transfers in 72h",
+      "Chip structure MISSING this run",
+      "~5% depth ~$108 vs LP $5.66M",
+    ],
+    finding:
+      "$BR reads clean on-chain this run. Chip structure isn’t populated. Alpha depth is thin.",
+    url: "https://x.com/labs_perseus/status/2101782429392323070",
+  },
+  {
+    ticker: "$AKE",
+    name: "AKE",
+    chain: "BSC",
+    ca: "0x2c3a8Ee94dDD97244a93Bc48298f97d2C412F7Db",
+    kind: "recent-distribution",
+    flag: "Risk" as const,
+    facts: [
+      "93.4% operator-controlled chips",
+      "98 large transfers in 72h",
+      "Volume not treated as clean demand",
+    ],
+    finding:
+      "93.4% operator-controlled chips; 98 large transfers in 72h; volume not treated as clean demand.",
+    url: "https://x.com/labs_perseus/status/2101753090755981423",
+  },
+] as const;
+
+export const LATEST_CALL = CALLS[0];
 
 export const HERTZFLOW = {
   name: "HertzFlow Alpha Skill",

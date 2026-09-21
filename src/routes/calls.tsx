@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CallCard, NextSlotCard } from "@/components/call-card";
+import { CALLS } from "@/lib/site";
 
 export const Route = createFileRoute("/calls")({
   head: () => ({
@@ -26,7 +27,9 @@ function CallsPage() {
         </p>
       </section>
       <section className="page grid gap-4 py-10 md:grid-cols-2">
-        <CallCard />
+        {CALLS.map((call, index) => (
+          <CallCard key={call.url} call={call} featured={index === 0} />
+        ))}
         <NextSlotCard />
       </section>
     </>

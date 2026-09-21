@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { CallCard } from "@/components/call-card";
-import { AIRDROP_TERMINAL, ALPHA_SKILL_CALLS } from "@/lib/site";
+import { AIRDROP_TERMINAL, ALPHA_SKILL_CALLS, CALLS } from "@/lib/site";
 
 export const Route = createFileRoute("/research")({
   head: () => ({
@@ -47,7 +47,9 @@ function ResearchPage() {
       <section className="page py-10">
         {filter === "calls" ? (
           <div className="grid gap-4 md:grid-cols-2">
-            <CallCard />
+            {CALLS.map((call, index) => (
+              <CallCard key={call.url} call={call} featured={index === 0} />
+            ))}
           </div>
         ) : (
           <article className="panel-dashed p-5 sm:p-6">
