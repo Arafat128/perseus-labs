@@ -3,7 +3,7 @@ export const SITE = {
   title: "Perseus Labs — research studio",
   description:
     "Perseus Labs publishes on-chain research products. First live desk: Alpha Skill Calls.",
-  email: "arafatr280@gmail.com",
+  email: "BusinessLabGrok@gmail.com",
   xUrl: "https://x.com/labs_perseus",
   xHandle: "@labs_perseus",
   footerNote:

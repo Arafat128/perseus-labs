@@ -21,5 +21,5 @@ npm run typecheck
 
 ## Notes
 
-Sponsored research inbox: arafatr280@gmail.com  
+Sponsored research inbox: BusinessLabGrok@gmail.com  
 Publish desk: [@labs_perseus](https://x.com/labs_perseus)
