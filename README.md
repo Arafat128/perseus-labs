@@ -1,10 +1,11 @@
 # Perseus Labs
 
-Research studio site. Live desk: **Alpha Skill Calls**. More desks incoming.
+Research studio site.
 
-- Site: Home, Products, Calls, Method, Contact
-- HertzFlow and Surf are data/method providers, not this studio
-- No price targets. Not financial advice.
+- Live: **Alpha Skill Calls**
+- Open for requests: **Airdrop Alpha Terminal**
+- HertzFlow and Surf are data/method providers for Alpha Skill Calls, not this studio
+- No price targets. Not financial advice. No eligibility guarantee.
 
 ## Stack
 
@@ -21,5 +22,5 @@ npm run typecheck
 
 ## Notes
 
-Sponsored research inbox: BusinessLabGrok@gmail.com  
+Inbox: BusinessLabGrok@gmail.com  
 Publish desk: [@labs_perseus](https://x.com/labs_perseus)

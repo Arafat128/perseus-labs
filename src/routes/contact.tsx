@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { type FormEvent, useState } from "react";
-import { SITE } from "@/lib/site";
+import { AIRDROP_TERMINAL, SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -9,7 +9,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Sponsored research slot for Perseus Labs. Not a buy rating. Editorial control stays with the studio.",
+          "Contact Perseus Labs. Alpha Skill Call inquiry or Airdrop Alpha Terminal request. Inbox: BusinessLabGrok@gmail.com.",
       },
     ],
   }),
@@ -21,15 +21,39 @@ function ContactPage() {
     <>
       <section className="page border-b border-line py-14 sm:py-20">
         <p className="kicker">Contact</p>
-        <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl">Sponsored research slot</h1>
+        <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl">Two paths. One inbox.</h1>
         <p className="lede mt-5">
-          Not a buy rating. Editorial control stays with Perseus Labs. The same inbox
-          will serve future desks.
+          {SITE.email}. Editorial control stays with Perseus Labs. We do not promise
+          coverage.
         </p>
       </section>
-      <section className="page grid gap-4 py-10 lg:grid-cols-5">
+
+      <section className="page grid gap-4 py-10 md:grid-cols-2">
+        <article className="panel flex h-full flex-col p-5 sm:p-6">
+          <p className="meta">Desk 01</p>
+          <h2 className="mt-3 text-2xl tracking-tight">Alpha Skill Call inquiry</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            Sponsored research slot. Not a buy rating. Form below opens mail to{" "}
+            {SITE.email}.
+          </p>
+        </article>
+        <article className="panel flex h-full flex-col p-5 sm:p-6">
+          <p className="meta">Desk 02</p>
+          <h2 className="mt-3 text-2xl tracking-tight">{AIRDROP_TERMINAL.name}</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            {AIRDROP_TERMINAL.summary} Use the Terminal form, not this page.
+          </p>
+          <p className="mt-auto pt-6">
+            <Link to="/terminal" className="btn btn-primary">
+              Terminal request
+            </Link>
+          </p>
+        </article>
+      </section>
+
+      <section className="page grid gap-4 pb-12 lg:grid-cols-5">
         <div className="panel p-5 sm:p-6 lg:col-span-3">
-          <h2 className="text-2xl tracking-tight">Request a slot</h2>
+          <h2 className="text-2xl tracking-tight">Alpha Skill Call inquiry</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted">
             Opens your email client to {SITE.email}. We do not promise coverage.
           </p>
@@ -64,7 +88,7 @@ function ContactForm() {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const clean = (value: string) => value.replace(/[\r\n]+/g, " ").trim();
-    const subject = `Sponsored research slot${tickerCa ? ` — ${clean(tickerCa)}` : ""}`;
+    const subject = `Alpha Skill Call inquiry${tickerCa ? ` — ${clean(tickerCa)}` : ""}`;
     const body = [
       `Name: ${clean(name)}`,
       `X handle: ${clean(handle)}`,

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ALPHA_SKILL_CALLS, UPCOMING_DESKS } from "@/lib/site";
+import { AIRDROP_TERMINAL, ALPHA_SKILL_CALLS, DESK_03 } from "@/lib/site";
 
 export function DeskGrid() {
   return (
@@ -20,18 +20,29 @@ export function DeskGrid() {
           </Link>
         </p>
       </article>
-      {UPCOMING_DESKS.map((desk, i) => (
-        <article key={desk.name} className="panel-dashed flex h-full flex-col p-5 sm:p-6">
-          <div className="flex items-center justify-between gap-3">
-            <p className="meta">{`Desk 0${i + 2}`}</p>
-            <span className="chip chip-soon">{desk.status}</span>
-          </div>
-          <h3 className="mt-3 text-xl tracking-tight text-muted">{desk.name}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-muted">
-            Unnamed until it ships. Same house rules: forensic copy, no price targets.
-          </p>
-        </article>
-      ))}
+      <article className="panel flex h-full flex-col p-5 sm:p-6">
+        <div className="flex items-center justify-between gap-3">
+          <p className="meta">Desk 02</p>
+          <span className="chip chip-open">{AIRDROP_TERMINAL.status}</span>
+        </div>
+        <h3 className="mt-3 text-xl tracking-tight">{AIRDROP_TERMINAL.name}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted">{AIRDROP_TERMINAL.summary}</p>
+        <p className="mt-auto pt-6">
+          <Link to="/terminal" className="btn">
+            Request a brief
+          </Link>
+        </p>
+      </article>
+      <article className="panel-dashed flex h-full flex-col p-5 sm:p-6">
+        <div className="flex items-center justify-between gap-3">
+          <p className="meta">Desk 03</p>
+          <span className="chip chip-soon">{DESK_03.status}</span>
+        </div>
+        <h3 className="mt-3 text-xl tracking-tight text-muted">{DESK_03.name}</h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted">
+          Unnamed until it ships. Same house rules: forensic copy, no price targets.
+        </p>
+      </article>
     </div>
   );
 }

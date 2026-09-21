@@ -132,6 +132,11 @@
     border-color: color-mix(in oklab, var(--color-gold) 40%, var(--color-line));
   }
 
+  .chip-open {
+    color: var(--color-cyan);
+    border-color: color-mix(in oklab, var(--color-cyan) 45%, var(--color-line));
+  }
+
   .chip-risk {
     color: var(--color-risk);
     border-color: color-mix(in oklab, var(--color-risk) 45%, var(--color-line));
@@ -199,6 +204,23 @@
     min-height: 8.5rem;
     resize: vertical;
     line-height: 1.5;
+  }
+
+  .check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-muted);
+  }
+
+  .check input {
+    margin-top: 0.2rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+    accent-color: var(--color-cyan);
   }
 
   .nav-link {

@@ -2,17 +2,19 @@ export const SITE = {
   name: "Perseus Labs",
   title: "Perseus Labs — research studio",
   description:
-    "Perseus Labs publishes on-chain research products. First live desk: Alpha Skill Calls.",
+    "Perseus Labs publishes on-chain research products. Live: Alpha Skill Calls. Open for requests: Airdrop Alpha Terminal.",
   email: "BusinessLabGrok@gmail.com",
   xUrl: "https://x.com/labs_perseus",
   xHandle: "@labs_perseus",
   footerNote:
-    "Not financial advice. No price targets. HertzFlow and Surf supply data for Alpha Skill Calls. Data can be wrong. DYOR.",
+    "Not financial advice. No price targets. No eligibility guarantee. Terminal site requests return a text brief only. HertzFlow and Surf supply data for Alpha Skill Calls. Data can be wrong. DYOR.",
 } as const;
 
 export const NAV = [
   { to: "/products", label: "Products" },
   { to: "/calls", label: "Calls" },
+  { to: "/terminal", label: "Terminal" },
+  { to: "/research", label: "Research" },
   { to: "/method", label: "Method" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -68,10 +70,25 @@ export const ALPHA_SKILL_CALLS = {
   chains: ["BSC", "ETH", "Base", "Arb", "Polygon", "OP"],
 } as const;
 
-export const UPCOMING_DESKS = [
-  { name: "Desk 02", status: "Coming soon" as const },
-  { name: "Desk 03", status: "Coming soon" as const },
-] as const;
+export const AIRDROP_TERMINAL = {
+  name: "Airdrop Alpha Terminal",
+  status: "Open for requests" as const,
+  summary:
+    "Name a project. If accepted, you get a written brief by email.",
+  detail:
+    "Diligence brief on a project, airdrop, or points program. Request on the site. If we accept, the requester gets a written brief by email.",
+  notIncluded:
+    "A site request does not include a designed PDF, charts, or an X thread.",
+  extras: "Those extras only happen if the studio takes the job further.",
+  limits:
+    "Not financial advice. Not an eligibility guarantee. Not a farm guide. Jobs are queued. Requests may be declined. Not instant.",
+  mailtoSubject: "Airdrop Alpha Terminal — request",
+} as const;
+
+export const DESK_03 = {
+  name: "Desk 03",
+  status: "Coming soon" as const,
+} as const;
 
 export const SHIP_FLOW = [
   { step: "01", title: "Research", detail: "Run the skill. Read the index. Write the facts." },
@@ -88,7 +105,15 @@ export const SHIP_FLOW = [
   },
 ] as const;
 
-export const PAGE_PATHS = ["/", "/products", "/calls", "/method", "/contact"] as const;
+export const PAGE_PATHS = [
+  "/",
+  "/products",
+  "/calls",
+  "/terminal",
+  "/research",
+  "/method",
+  "/contact",
+] as const;
 
 export function requestOrigin(request: Request): string {
   const url = new URL(request.url);
