@@ -25,8 +25,16 @@ function SiteHeader() {
       <div className="page flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:py-0">
         <Link
           to="/"
-          className="inline-flex min-h-11 items-center text-sm font-medium tracking-tight"
+          className="inline-flex min-h-11 items-center gap-2.5 text-sm font-medium tracking-tight"
         >
+          <img
+            src="/icon.png"
+            alt=""
+            width={28}
+            height={28}
+            className="size-7 shrink-0 object-contain"
+            decoding="async"
+          />
           {SITE.name}
         </Link>
         <nav aria-label="Primary" className="-mx-3 flex flex-wrap items-center">
