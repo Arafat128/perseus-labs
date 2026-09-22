@@ -53,9 +53,6 @@ function ContactPage() {
               </a>
             </li>
           </ul>
-          <p className="mt-8 text-sm leading-relaxed text-muted">
-            Desk 02 briefs go through Terminal, not this page.
-          </p>
         </aside>
       </section>
     </>

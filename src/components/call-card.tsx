@@ -1,8 +1,9 @@
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { CALLS, LATEST_CALL } from "@/lib/site";
+import { CALLS, LATEST_CALL, TERMINAL_BRIEFS } from "@/lib/site";
 
 type Call = (typeof CALLS)[number];
+type Brief = (typeof TERMINAL_BRIEFS)[number];
 
 export function timeAgo(iso: string, now = Date.now()): string {
   const then = Date.parse(iso);
@@ -16,7 +17,7 @@ export function timeAgo(iso: string, now = Date.now()): string {
   return `${days}d ago`;
 }
 
-function PostedAgo({ iso }: { iso: string }) {
+export function PostedAgo({ iso }: { iso: string }) {
   const [label, setLabel] = useState(() => timeAgo(iso));
 
   useEffect(() => {
@@ -63,6 +64,36 @@ export function CallCard({
       </ul>
       <p className="mt-auto pt-6">
         <a href={call.url} className="btn" rel="noopener noreferrer" target="_blank">
+          Read the X thread
+          <ArrowUpRight className="size-4" aria-hidden="true" />
+        </a>
+      </p>
+    </article>
+  );
+}
+
+export function BriefCard({ brief }: { brief: Brief }) {
+  return (
+    <article className="panel flex h-full flex-col p-5 sm:p-6">
+      <div className="flex flex-wrap items-center gap-2">
+        <p className="meta">Published brief</p>
+        <span className="chip">{brief.flag}</span>
+        <PostedAgo iso={brief.publishedAt} />
+      </div>
+      <h2 className="mt-3 text-2xl tracking-tight">{brief.name}</h2>
+      <p className="meta mt-2">{brief.kind}</p>
+      <ul className="mt-5 space-y-2 text-sm leading-relaxed">
+        {brief.facts.map((fact) => (
+          <li key={fact} className="border-l border-line pl-3 text-fg">
+            {fact}
+          </li>
+        ))}
+      </ul>
+      <p className="meta mt-4">
+        {brief.handle} · {brief.site.replace(/^https:\/\//, "")}
+      </p>
+      <p className="mt-auto pt-6">
+        <a href={brief.url} className="btn" rel="noopener noreferrer" target="_blank">
           Read the X thread
           <ArrowUpRight className="size-4" aria-hidden="true" />
         </a>

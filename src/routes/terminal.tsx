@@ -1,55 +1,53 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { type FormEvent, useState } from "react";
-import { AIRDROP_TERMINAL, SITE } from "@/lib/site";
+import { AIRDROP_TERMINAL, ALPHA_SKILL_CALLS, SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/terminal")({
   head: () => ({
     meta: [
-      { title: "Airdrop Alpha Terminal — Perseus Labs" },
+      { title: "Terminal — Perseus Labs" },
       {
         name: "description",
         content:
-          "Request a project brief from Airdrop Alpha Terminal. If accepted, you get text by email. Not financial advice.",
+          "Request Desk 01 Alpha Skill Calls or Desk 02 Airdrop Alpha Terminal. If accepted, you get text by email.",
       },
     ],
   }),
   component: TerminalPage,
 });
 
+type DeskId = "calls" | "terminal";
+
 function TerminalPage() {
   return (
     <>
       <section className="page border-b border-line py-14 sm:py-20">
-        <div className="flex flex-wrap items-center gap-3">
-          <p className="kicker">Desk 02</p>
-          <span className="chip chip-open">{AIRDROP_TERMINAL.status}</span>
-        </div>
-        <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl">{AIRDROP_TERMINAL.name}</h1>
+        <p className="kicker">Terminal</p>
+        <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl">Request a desk</h1>
         <p className="lede mt-5">
-          Desk 02 only. Request a project brief. If we accept, you get text by email.
-          No farm steps. No “you are eligible.” Alpha Skill Calls are not requested
-          here.
+          Choose Desk 01 or Desk 02. If we accept, you get text by email. Queued. We may
+          decline. No farm steps. No “you are eligible.”
         </p>
       </section>
 
       <section className="page grid gap-4 py-10 lg:grid-cols-5">
         <div className="panel p-5 sm:p-6 lg:col-span-3">
-          <h2 className="text-2xl tracking-tight">Request a brief</h2>
+          <h2 className="text-2xl tracking-tight">Request</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted">
-            Opens mail to {SITE.email}. Subject is locked. Queued. We may decline.
+            Opens mail to {SITE.email}. Subject follows the desk you pick.
           </p>
           <TerminalForm />
         </div>
         <aside className="panel p-5 sm:p-6 lg:col-span-2">
-          <p className="meta">What a site request is</p>
+          <p className="meta">Desks</p>
           <ul className="mt-4 space-y-4 text-sm leading-relaxed text-muted">
+            <li className="border-l border-line pl-3">
+              Desk 01 {ALPHA_SKILL_CALLS.name}: ticker + CA forensic thread. No price
+              target.
+            </li>
             <li className="border-l border-line pl-3">{AIRDROP_TERMINAL.detail}</li>
             <li className="border-l border-line pl-3">{AIRDROP_TERMINAL.notIncluded}</li>
-            <li className="border-l border-line pl-3">{AIRDROP_TERMINAL.extras}</li>
-            <li className="border-l border-line pl-3">
-              Desk 01 Alpha Skill Calls are published on Calls and Research. They are not
-              requested from this form.
-            </li>
+            <li className="border-l border-line pl-3">{AIRDROP_TERMINAL.limits}</li>
           </ul>
         </aside>
       </section>
@@ -58,6 +56,7 @@ function TerminalPage() {
 }
 
 function TerminalForm() {
+  const [desk, setDesk] = useState<DeskId>("calls");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [project, setProject] = useState("");
@@ -66,14 +65,18 @@ function TerminalForm() {
   const [question, setQuestion] = useState("");
   const [accepted, setAccepted] = useState(false);
 
+  const isCalls = desk === "calls";
+
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!accepted) return;
     const clean = (value: string) => value.replace(/[\r\n]+/g, " ").trim();
+    const subject = isCalls ? ALPHA_SKILL_CALLS.mailtoSubject : AIRDROP_TERMINAL.mailtoSubject;
     const body = [
+      `Desk: ${isCalls ? `01 ${ALPHA_SKILL_CALLS.name}` : `02 ${AIRDROP_TERMINAL.name}`}`,
       `Name: ${clean(name)}`,
       `Email: ${clean(email)}`,
-      `Project: ${clean(project)}`,
+      `${isCalls ? "Ticker" : "Project"}: ${clean(project)}`,
       `Website / X: ${clean(web) || "—"}`,
       `Chain / CA: ${clean(chainCa) || "—"}`,
       "",
@@ -82,12 +85,27 @@ function TerminalForm() {
       "",
       "Ack: Not financial advice. This is not an eligibility guarantee.",
     ].join("\n");
-    const href = `mailto:${SITE.email}?subject=${encodeURIComponent(AIRDROP_TERMINAL.mailtoSubject)}&body=${encodeURIComponent(body)}`;
+    const href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = href;
   }
 
   return (
     <form className="mt-8 space-y-5" onSubmit={onSubmit}>
+      <fieldset>
+        <legend className="meta">Desk</legend>
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+          <DeskChoice
+            active={isCalls}
+            onClick={() => setDesk("calls")}
+            label={`01 ${ALPHA_SKILL_CALLS.name}`}
+          />
+          <DeskChoice
+            active={!isCalls}
+            onClick={() => setDesk("terminal")}
+            label={`02 ${AIRDROP_TERMINAL.name}`}
+          />
+        </div>
+      </fieldset>
       <label className="block">
         <span className="meta">Name</span>
         <input
@@ -112,11 +130,12 @@ function TerminalForm() {
         />
       </label>
       <label className="block">
-        <span className="meta">Project name</span>
+        <span className="meta">{isCalls ? "Ticker" : "Project name"}</span>
         <input
           className="field mt-2"
           name="project"
           required
+          placeholder={isCalls ? "$TICKER" : undefined}
           value={project}
           onChange={(e) => setProject(e.target.value)}
         />
@@ -136,7 +155,8 @@ function TerminalForm() {
         <input
           className="field mt-2 font-mono text-sm"
           name="chainCa"
-          placeholder="optional"
+          required={isCalls}
+          placeholder={isCalls ? "BSC  0x…" : "optional"}
           value={chainCa}
           onChange={(e) => setChainCa(e.target.value)}
         />
@@ -164,5 +184,21 @@ function TerminalForm() {
         Open email
       </button>
     </form>
+  );
+}
+
+function DeskChoice({
+  active,
+  onClick,
+  label,
+}: {
+  active: boolean;
+  onClick: () => void;
+  label: string;
+}) {
+  return (
+    <button type="button" className={active ? "btn btn-primary" : "btn"} onClick={onClick}>
+      {label}
+    </button>
   );
 }

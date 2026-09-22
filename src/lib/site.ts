@@ -21,6 +21,23 @@ export const NAV = [
 
 export const CALLS = [
   {
+    ticker: "$R2",
+    name: "R2 Protocol",
+    chain: "BSC",
+    ca: "0x223a20e1b83aa3832e78d4b7b132df022e739222",
+    kind: "vesting-concentration",
+    flag: "Risk" as const,
+    facts: [
+      "Aligned: HertzFlow risk 8/10 (HIGH supply + liquidity)",
+      "Vesting proxy holds 82.34%; circ ~104M of 1B",
+      "Thin float; gate book ~6% spread",
+    ],
+    finding:
+      "Correction from the 0/10 CLEAN read. Risk 8/10. Vesting concentration and a shallow book.",
+    url: "https://x.com/labs_perseus/status/2102142206286897266",
+    publishedAt: "2026-09-21T21:05:32Z",
+  },
+  {
     ticker: "$BR",
     name: "Bedrock",
     chain: "BSC",
@@ -92,6 +109,7 @@ export const ALPHA_SKILL_CALLS = {
   ],
   rules: "No price target. UNKNOWN if missing.",
   chains: ["BSC", "ETH", "Base", "Arb", "Polygon", "OP"],
+  mailtoSubject: "Alpha Skill Calls — request",
 } as const;
 
 export const AIRDROP_TERMINAL = {
@@ -108,6 +126,23 @@ export const AIRDROP_TERMINAL = {
     "Not financial advice. Not an eligibility guarantee. Not a farm guide. Jobs are queued. Requests may be declined. Not instant.",
   mailtoSubject: "Airdrop Alpha Terminal — request",
 } as const;
+
+export const TERMINAL_BRIEFS = [
+  {
+    name: "4DLabs",
+    kind: "pre-token incubation",
+    flag: "Forensic" as const,
+    facts: [
+      "YZi Labs EASY Residency S2 — announced 2026-09-11",
+      "Token / chain / CA: UNKNOWN",
+      "Airdrop not announced; role ≠ allocation",
+    ],
+    site: "https://4dlabs.space/",
+    handle: "@4Dlabs_Official",
+    url: "https://x.com/labs_perseus/status/2102285055205019665",
+    publishedAt: "2026-09-22T06:33:10Z",
+  },
+] as const;
 
 export const DESK_03 = {
   name: "Desk 03",

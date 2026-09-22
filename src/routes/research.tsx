@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CallCard } from "@/components/call-card";
+import { BriefCard, CallCard } from "@/components/call-card";
 import { XLive } from "@/components/x-live";
-import { AIRDROP_TERMINAL, CALLS } from "@/lib/site";
+import { AIRDROP_TERMINAL, CALLS, TERMINAL_BRIEFS } from "@/lib/site";
 
 export const Route = createFileRoute("/research")({
   head: () => ({
@@ -44,15 +44,13 @@ function ResearchPage() {
       <section className="page border-t border-line py-10">
         <div className="mb-4 flex flex-wrap items-center gap-3">
           <p className="kicker">Desk 02</p>
-          <span className="chip chip-open">{AIRDROP_TERMINAL.status}</span>
+          <span className="chip chip-open">{AIRDROP_TERMINAL.name}</span>
         </div>
-        <article className="panel-dashed p-5 sm:p-6">
-          <h2 className="text-2xl tracking-tight text-muted">{AIRDROP_TERMINAL.name}</h2>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
-            Terminal briefs are emailed privately. Public files appear here only when we
-            publish them. None on the board yet.
-          </p>
-        </article>
+        <div className="grid gap-4 md:grid-cols-2">
+          {TERMINAL_BRIEFS.map((brief) => (
+            <BriefCard key={brief.url} brief={brief} />
+          ))}
+        </div>
       </section>
 
       <section className="page border-t border-line py-10 sm:py-14">
