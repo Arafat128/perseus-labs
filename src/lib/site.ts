@@ -35,6 +35,7 @@ export const CALLS = [
     finding:
       "$BR reads clean on-chain this run. Chip structure isn’t populated. Alpha depth is thin.",
     url: "https://x.com/labs_perseus/status/2101782429392323070",
+    publishedAt: "2026-09-20T21:15:55Z",
   },
   {
     ticker: "$AKE",
@@ -51,6 +52,7 @@ export const CALLS = [
     finding:
       "93.4% operator-controlled chips; 98 large transfers in 72h; volume not treated as clean demand.",
     url: "https://x.com/labs_perseus/status/2101753090755981423",
+    publishedAt: "2026-09-20T19:19:22Z",
   },
 ] as const;
 
