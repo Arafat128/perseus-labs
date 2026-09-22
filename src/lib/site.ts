@@ -114,21 +114,6 @@ export const DESK_03 = {
   status: "Coming soon" as const,
 } as const;
 
-export const SHIP_FLOW = [
-  { step: "01", title: "Research", detail: "Run the skill. Read the index. Write the facts." },
-  {
-    step: "02",
-    title: "Writer + Visual",
-    detail: "Thread cap: 5 tweets.",
-  },
-  { step: "03", title: "Review", detail: "PASS or FAIL. Fail does not ship." },
-  {
-    step: "04",
-    title: "Publish",
-    detail: "Posted on @labs_perseus with 30–60s gaps.",
-  },
-] as const;
-
 export const PAGE_PATHS = [
   "/",
   "/products",

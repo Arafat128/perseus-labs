@@ -1,6 +1,6 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { type FormEvent, useState } from "react";
-import { AIRDROP_TERMINAL, SITE } from "@/lib/site";
+import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -8,8 +8,7 @@ export const Route = createFileRoute("/contact")({
       { title: "Contact — Perseus Labs" },
       {
         name: "description",
-        content:
-          "Contact Perseus Labs. Alpha Skill Call inquiry or Airdrop Alpha Terminal request. Inbox: BusinessLabGrok@gmail.com.",
+        content: `Contact Perseus Labs. Inbox: ${SITE.email}.`,
       },
     ],
   }),
@@ -21,58 +20,42 @@ function ContactPage() {
     <>
       <section className="page border-b border-line py-14 sm:py-20">
         <p className="kicker">Contact</p>
-        <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl">Two paths. One inbox.</h1>
+        <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl">Write the studio.</h1>
         <p className="lede mt-5">
-          {SITE.email}. Editorial control stays with Perseus Labs. We do not promise
-          coverage.
+          General contact only. Opens mail to {SITE.email}.
         </p>
       </section>
 
-      <section className="page grid gap-4 py-10 md:grid-cols-2">
-        <article className="panel flex h-full flex-col p-5 sm:p-6">
-          <p className="meta">Desk 01</p>
-          <h2 className="mt-3 text-2xl tracking-tight">Alpha Skill Call inquiry</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted">
-            Sponsored research slot. Not a buy rating. Form below opens mail to{" "}
-            {SITE.email}.
-          </p>
-        </article>
-        <article className="panel flex h-full flex-col p-5 sm:p-6">
-          <p className="meta">Desk 02</p>
-          <h2 className="mt-3 text-2xl tracking-tight">{AIRDROP_TERMINAL.name}</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted">
-            {AIRDROP_TERMINAL.summary} Use the Terminal form, not this page.
-          </p>
-          <p className="mt-auto pt-6">
-            <Link to="/terminal" className="btn btn-primary">
-              Terminal request
-            </Link>
-          </p>
-        </article>
-      </section>
-
-      <section className="page grid gap-4 pb-12 lg:grid-cols-5">
+      <section className="page grid gap-4 py-10 lg:grid-cols-5">
         <div className="panel p-5 sm:p-6 lg:col-span-3">
-          <h2 className="text-2xl tracking-tight">Alpha Skill Call inquiry</h2>
+          <h2 className="text-2xl tracking-tight">Message</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted">
-            Opens your email client to {SITE.email}. We do not promise coverage.
+            Name, how to reach you, and the note. No ticker form here.
           </p>
           <ContactForm />
         </div>
         <aside className="panel p-5 sm:p-6 lg:col-span-2">
-          <p className="meta">Terms</p>
-          <ul className="mt-4 space-y-4 text-sm leading-relaxed text-muted">
-            <li className="border-l border-line pl-3">Sponsored research is not a rating.</li>
+          <p className="meta">Inbox</p>
+          <ul className="mt-4 space-y-4 text-sm leading-relaxed">
             <li className="border-l border-line pl-3">
-              Perseus Labs keeps the pen. FAIL reviews do not ship.
+              <a href={`mailto:${SITE.email}`} className="text-fg hover:text-cyan">
+                {SITE.email}
+              </a>
             </li>
             <li className="border-l border-line pl-3">
-              No price targets. Missing facts stay UNKNOWN.
-            </li>
-            <li className="border-l border-line pl-3">
-              HertzFlow and Surf are data providers, not this studio.
+              <a
+                href={SITE.xUrl}
+                className="text-fg hover:text-cyan"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {SITE.xHandle}
+              </a>
             </li>
           </ul>
+          <p className="mt-8 text-sm leading-relaxed text-muted">
+            Desk 02 briefs go through Terminal, not this page.
+          </p>
         </aside>
       </section>
     </>
@@ -81,18 +64,18 @@ function ContactPage() {
 
 function ContactForm() {
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [handle, setHandle] = useState("");
-  const [tickerCa, setTickerCa] = useState("");
   const [note, setNote] = useState("");
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const clean = (value: string) => value.replace(/[\r\n]+/g, " ").trim();
-    const subject = `Alpha Skill Call inquiry${tickerCa ? ` — ${clean(tickerCa)}` : ""}`;
+    const subject = "Contact — Perseus Labs";
     const body = [
       `Name: ${clean(name)}`,
-      `X handle: ${clean(handle)}`,
-      `Ticker + CA: ${clean(tickerCa)}`,
+      `Email: ${clean(email)}`,
+      `X handle: ${clean(handle) || "—"}`,
       "",
       note.trim(),
     ].join("\n");
@@ -114,6 +97,18 @@ function ContactForm() {
         />
       </label>
       <label className="block">
+        <span className="meta">Email</span>
+        <input
+          className="field mt-2"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </label>
+      <label className="block">
         <span className="meta">X handle</span>
         <input
           className="field mt-2"
@@ -125,21 +120,11 @@ function ContactForm() {
         />
       </label>
       <label className="block">
-        <span className="meta">Ticker + CA</span>
-        <input
-          className="field mt-2 font-mono text-sm"
-          name="tickerCa"
-          required
-          placeholder="$TICKER  0x…"
-          value={tickerCa}
-          onChange={(e) => setTickerCa(e.target.value)}
-        />
-      </label>
-      <label className="block">
-        <span className="meta">Note</span>
+        <span className="meta">Message</span>
         <textarea
           className="field mt-2"
           name="note"
+          required
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />

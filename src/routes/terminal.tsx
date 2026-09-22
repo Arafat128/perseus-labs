@@ -26,8 +26,9 @@ function TerminalPage() {
         </div>
         <h1 className="mt-4 max-w-3xl text-4xl sm:text-5xl">{AIRDROP_TERMINAL.name}</h1>
         <p className="lede mt-5">
-          Request a project brief. If we accept, you get text by email. No farm steps. No
-          “you are eligible.”
+          Desk 02 only. Request a project brief. If we accept, you get text by email.
+          No farm steps. No “you are eligible.” Alpha Skill Calls are not requested
+          here.
         </p>
       </section>
 
@@ -45,7 +46,10 @@ function TerminalPage() {
             <li className="border-l border-line pl-3">{AIRDROP_TERMINAL.detail}</li>
             <li className="border-l border-line pl-3">{AIRDROP_TERMINAL.notIncluded}</li>
             <li className="border-l border-line pl-3">{AIRDROP_TERMINAL.extras}</li>
-            <li className="border-l border-line pl-3">{AIRDROP_TERMINAL.limits}</li>
+            <li className="border-l border-line pl-3">
+              Desk 01 Alpha Skill Calls are published on Calls and Research. They are not
+              requested from this form.
+            </li>
           </ul>
         </aside>
       </section>
